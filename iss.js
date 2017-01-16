@@ -14,6 +14,5 @@ request(url, function(err, result){
         
         console.log("Latitude : " + parseFloat(searchResults.iss_position.latitude).toFixed(2));
         console.log("Longitude : " + parseFloat(searchResults.iss_position.longitude).toFixed(2));
-       
      }
 });
