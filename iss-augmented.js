@@ -31,8 +31,7 @@ request(url, function(err, result){
         
         issLat = parseFloat(searchResults.iss_position.latitude);
         issLng = parseFloat(searchResults.iss_position.longitude);
-        console.log(issLat);
-        console.log(issLng);
+        console.log("ISS station", issLat, issLng);
         
         prompt.get('city', function(err, result){
             if(err){
@@ -49,7 +48,7 @@ request(url, function(err, result){
                     var searchRes = JSON.parse(cityInfo.body)
                     cityLat = parseFloat(searchRes.results[0].geometry.location.lat);
                     cityLng = parseFloat(searchRes.results[0].geometry.location.lng);
-                    
+                    console.log("City", cityLat, cityLng)
                     console.log(cityLat);
                     console.log(cityLng);
                     

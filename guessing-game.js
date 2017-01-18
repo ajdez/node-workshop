@@ -5,7 +5,7 @@ prompt.start();
 var randomNumber = Math.floor(Math.random()*101);
 var count = 0;
 function guessingGame(){
-    if(count < 4){
+    if(count < 12){
         prompt.get("number", function(err, result){
             if(err){
                 console.log("Something went wrong buddy");
