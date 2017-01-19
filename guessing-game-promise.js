@@ -1,5 +1,5 @@
 var prompt = require('prompt-promise');
-var count = 10;
+var count = 5;
 
 
 var randomNumber = Math.floor(Math.random()*101);
@@ -11,6 +11,7 @@ function numberGuessingGame(){
             var numberGuess = +guess;
             if(numberGuess === randomNumber){
                 console.log("you won!")
+                prompt.end();
                 return;
             }
             else if(numberGuess < randomNumber){
@@ -27,6 +28,7 @@ function numberGuessingGame(){
     }
     else{
         console.log("You lose");
+        prompt.end();
         return;
     }
 }

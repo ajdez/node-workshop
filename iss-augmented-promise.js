@@ -2,28 +2,33 @@
 
 Number.prototype.toRadians = function() {
     return this * Math.PI / 180;
-  }
-  
-function calculateDistance (lat1, lon1, lat2, lon2){
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
     var R = 6371e3; // metres
     var φ1 = lat1.toRadians();
     var φ2 = lat2.toRadians();
-    var Δφ = (lat2-lat1).toRadians();
-    var Δλ = (lon2-lon1).toRadians();
-    
-    var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-            Math.cos(φ1) * Math.cos(φ2) *
-            Math.sin(Δλ/2) * Math.sin(Δλ/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    
+    var Δφ = (lat2 - lat1).toRadians();
+    var Δλ = (lon2 - lon1).toRadians();
+
+    var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
     var d = R * c;
-    
+
     return d;
 }
 //////////////////////////////// radian info on top ////////////////////////////////
 
+
+
+
 var request = require('request-promise');
 var prompt = require('prompt-promise');
+
+//prompt.start();
 
 var urlISS = request("http://api.open-notify.org/iss-now.json");
 
@@ -49,6 +54,7 @@ function computeDistancePromise(){
         var cityLng = +(cityData.results[0].geometry.location.lng);
         
         var distanceToCity = calculateDistance(issLat, issLng, cityLat, cityLng).toFixed(2);
+        prompt.end();
         return distanceToCity;
     })
     .catch(function(err){
@@ -60,6 +66,4 @@ function computeDistancePromise(){
 computeDistancePromise().then(function(result){
     console.log(result)
 })
-
-
 
